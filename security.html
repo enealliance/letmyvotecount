@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security - LetMyVoteCount</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+            --success-color: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .security-hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .security-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .security-hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .security-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .security-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .security-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--success-color);
+        }
+
+        .security-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .security-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--success-color);
+        }
+
+        .certification-section {
+            background-color: var(--light-bg);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .certification-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-flow {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .data-flow-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .data-flow h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .data-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .security-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .floating-form-icon {
+                position: fixed;
+                bottom: 50px;
+                right: 30px;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: linear-gradient(-45deg, #2563eb, #3b82f6, #1e40af, #60a5fa);
+                background-size: 400% 400%;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                cursor: pointer;
+                animation: gradientBG 5s ease infinite, bounce 2s ease-in-out infinite;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+            }
+
+            .floating-form-icon:hover {
+                transform: scale(1.1);
+            }
+
+            .floating-form-icon svg {
+                width: 30px;
+                height: 30px;
+                fill: white;
+            }
+
+            .form-popup-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .form-popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 700px;
+                height: 80vh;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                z-index: 1000;
+            }
+
+            .form-popup iframe {
+                width: 100%;
+                height: calc(100% - 40px);
+                border: none;
+                border-radius: 0 0 12px 12px;
+            }
+
+            .response-time {
+                background: #f3f4f6;
+                color: #1f2937;
+                padding: 10px;
+                text-align: center;
+                font-size: 0.9rem;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .close-popup {
+                position: absolute;
+                top: -15px;
+                right: -15px;
+                width: 30px;
+                height: 30px;
+                background: #ef4444;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            @keyframes gradientBG {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+    </style>
+</head>
+<body>
+    <section class="security-hero">
+        <h1>Security & Privacy</h1>
+        <p>Your trust is our priority. Learn how we protect your data and ensure the integrity of every vote.</p>
+    </section>
+
+    <div class="security-grid">
+        <div class="security-card">
+            <h3>
+                <svg class="security-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Google Cloud Security
+            </h3>
+            <p>Built on Google's enterprise-grade infrastructure, leveraging the same security measures that protect billions of Google users worldwide. All data is encrypted at rest and in transit using industry-standard protocols.</p>
+        </div>
+
+        <div class="security-card">
+            <h3>
+                <svg class="security-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 116 0z" clip-rule="evenodd"/>
+                </svg>
+                Authentication & Authorization
+            </h3>
+            <p>Secure OAuth 2.0 authentication through Google accounts. Role-based access control ensures users can only access appropriate features and data. Multi-factor authentication available for enhanced security.</p>
+        </div>
+
+        <div class="security-card">
+            <h3>
+                <svg class="security-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"/>
+                </svg>
+                Vote Privacy
+            </h3>
+            <p>Optional anonymity mode ensures vote privacy. When enabled, voter identities are completely separated from their votes. All voting data is encrypted and stored securely in isolated databases.</p>
+        </div>
+    </div>
+
+    <section class="certification-section">
+        <h2>Security Standards & Compliance</h2>
+        <div class="certification-grid">
+            <div class="certification-item">
+                <h3>Data Protection</h3>
+                <p>Compliant with GDPR and international data protection regulations. Regular security audits and penetration testing ensure system integrity.</p>
+            </div>
+            <div class="certification-item">
+                <h3>Access Control</h3>
+                <p>Strict access controls and audit logging. All system access is monitored and logged for security verification.</p>
+            </div>
+            <div class="certification-item">
+                <h3>Encryption</h3>
+                <p>Industry-standard TLS 1.3 encryption for all data transmission. AES-256 encryption for data at rest.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="data-flow">
+        <div class="data-flow-content">
+            <h2>Secure Data Flow Process</h2>
+
+            <div class="data-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Secure Authentication</h3>
+                    <p>Users authenticate through Google's secure OAuth 2.0 system.</p>
+                </div>
+            </div>
+
+            <div class="data-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Data Encryption</h3>
+                    <p>All data is encrypted using industry-standard protocols before transmission.</p>
+                </div>
+            </div>
+
+            <div class="data-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Secure Storage</h3>
+                    <p>Votes are stored in isolated, encrypted databases with strict access controls.</p>
+                </div>
+            </div>
+
+            <div class="data-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Audit Trail</h3>
+                    <p>All system actions are logged and monitored for security verification.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-form-icon" onclick="toggleFormPopup()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+        </svg>
+    </div>
+
+    <div class="form-popup-overlay" onclick="toggleFormPopup()" style="display: none;">
+        <div class="form-popup">
+            <div class="response-time">📫 We typically respond within 8 hours</div>
+            <div class="close-popup" onclick="toggleFormPopup()">×</div>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeJniqiz86AnH6BxjCO3qLT_MsX03FahLmJswOgiEkvp6JYEQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+          <!--  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeJniqiz86AnH6BxjCO3qLT_MsX03FahLmJswOgiEkvp6JYEQ/viewform?embedded=true" width="640" height="684" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>-->
+        </div>
+    </div>
+
+
+    <footer style="background-color: var(--text-color); color: white; text-align: center; padding: 2rem;">
+        <p>© 2024 Let My Vote Count. All rights reserved.</p>
+        <p>For security-related inquiries, contact: security@letmyvotecount.com</p>
+    </footer>
+
+    <script>
+        function toggleFormPopup(event) {
+            if (event) {
+                event.stopPropagation();
+            }
+            const popup = document.querySelector('.form-popup');
+            const overlay = document.querySelector('.form-popup-overlay');
+
+            if (overlay.style.display === 'none' || !overlay.style.display) {
+                overlay.style.display = 'flex';
+                popup.style.display = 'block';
+            } else {
+                overlay.style.display = 'none';
+                popup.style.display = 'none';
+            }
+        }
+
+        // Prevent popup from closing when clicking inside the form
+        document.querySelector('.form-popup').addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+    </script>
+</body>
+</html>
