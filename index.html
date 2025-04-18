@@ -171,70 +171,35 @@
     aspect-ratio: 16/9;
 }
 
-.contact-section {
-    padding: 5rem 2rem;
-    background-color: var(--light-bg);
-}
-
-.contact-container {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--text-color);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e5e7eb;
+.update-notes {
+    max-width: 860px;
+    margin: 2rem auto 0;
+    padding: 1.5rem;
+    background-color: #f8fafc;
     border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
+.update-notes h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
 }
 
-.contact-submit {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
+.update-notes ul {
+    padding-left: 1.5rem;
+    margin-bottom: 0;
 }
 
-.contact-submit:hover {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
+.update-notes li {
+    margin-bottom: 0.75rem;
 }
 
-@media (max-width: 768px) {
-    .video-container {
-        margin: 0 1rem;
-    }
-
-    .contact-container {
-        padding: 0 1rem;
-    }
+.update-notes li:last-child {
+    margin-bottom: 0;
 }
+
 .floating-form-icon {
         position: fixed;
         bottom: 50px;
@@ -444,6 +409,33 @@
         </div>
     </section>
 
+    <!-- Video Demo Section - Moved to the top as requested -->
+    <section class="video-section">
+        <h2 class="section-title">See Let My Vote Count in Action</h2>
+        <div class="video-container">
+            <iframe
+                width="860"
+                height="485"
+                src="https://www.youtube.com/embed/QLarWWUQeag"
+                title="Platform Demo"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- New update notes section added underneath the video -->
+        <div class="update-notes">
+            <h3>Recent Platform Updates</h3>
+            <ul>
+                <li><strong>Open Elections:</strong> You can now create elections that are open to everyone by enabling the 'Allow anyone to Vote' option. Anyone with a Gmail account can participate without requiring a voter register.</li>
+                <li><strong>Unique Election IDs:</strong> Each election now has a unique identifier that can be shared with voters, ensuring your elections remain distinct even if similar ones exist.</li>
+                <li><strong>Real-Time Vote Preview:</strong> Election creators can now preview voting progress at any point using the view button in the 'Manage Your Elections' panel, providing valuable insights before requesting final results.</li>
+                <li><strong>10,000 Voter Capacity:</strong> Both open and restricted elections maintain the same 10,000 total voter limit.</li>
+            </ul>
+        </div>
+    </section>
+
     <section class="features">
         <h2 class="section-title">Why Choose Let My Vote Count?</h2>
         <div class="features-grid">
@@ -484,138 +476,79 @@
         </div>
     </section>
 
-    <!-- Video Demo Section -->
-<section class="video-section">
-    <h2 class="section-title">See Let My Vote Count in Action</h2>
-    <div class="video-container">
-        <!-- Replace VIDEO_ID with your actual YouTube video ID -->
-        <iframe
-            width="860"
-            height="485"
-            src="https://www.youtube.com/embed/QLarWWUQeag"
-            title="Platform Demo"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
+    <!-- Contact section removed as requested -->
+
+    <div class="floating-form-icon" onclick="toggleFormPopup()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
+        </svg>
     </div>
-</section>
 
-<!-- Contact Section -->
-<section class="contact-section">
-    <h2 class="section-title">Get in Touch</h2>
-    <div class="contact-container">
-        <form id="contactForm" onsubmit="return sendEmail()">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="contact-submit">Send Message</button>
-        </form>
-    </div>
-</section>
-
-<div class="floating-form-icon" onclick="toggleFormPopup()">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/>
-    </svg>
-</div>
-
-<div class="form-popup-overlay" onclick="toggleFormPopup()" style="display: none;">
-    <div class="form-popup">
-        <div class="response-time">📫 We typically respond within 8 hours</div>
-        <div class="close-popup" onclick="toggleFormPopup()">×</div>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeJniqiz86AnH6BxjCO3qLT_MsX03FahLmJswOgiEkvp6JYEQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-      <!--  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeJniqiz86AnH6BxjCO3qLT_MsX03FahLmJswOgiEkvp6JYEQ/viewform?embedded=true" width="640" height="684" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>-->
-    </div>
-</div>
-
-<div class="auth-popup-overlay" id="authPopup">
-    <div class="auth-popup">
-        <button class="auth-popup-close" onclick="closeAuthPopup()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 6L6 18M6 6l12 12"></path>
-            </svg>
-        </button>
-        <div class="auth-popup-title">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-            </svg>
-            Sign in required
+    <div class="form-popup-overlay" onclick="toggleFormPopup()" style="display: none;">
+        <div class="form-popup">
+            <div class="response-time">📫 We typically respond within 8 hours</div>
+            <div class="close-popup" onclick="toggleFormPopup()">×</div>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeJniqiz86AnH6BxjCO3qLT_MsX03FahLmJswOgiEkvp6JYEQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
-        <div class="auth-popup-content">
-            Creating or voting in an election requires that your browser is signed into your Google account. You will be served a 403 error page if you're not signed in.
-            If your browser is signed in with your Google Account, click continue, otherwise sign in with google and return to this page.
-        </div>
-        <div class="auth-popup-buttons">
-            <button class="auth-continue-btn" onclick="continueToDestination()">Continue</button>
-            <a href="https://accounts.google.com/ServiceLogin" class="auth-signin-btn" target="_blank">
-                <svg width="18" height="18" viewBox="0 0 18 18">
-                    <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
-                    <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
-                    <path fill="#FBBC05" d="M3.964 10.71c-.18-.54-.282-1.117-.282-1.71s.102-1.17.282-1.71V4.958H.957C.347 6.173 0 7.548 0 9s.348 2.827.957 4.042l3.007-2.332z"/>
-                    <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
+    </div>
+
+    <div class="auth-popup-overlay" id="authPopup">
+        <div class="auth-popup">
+            <button class="auth-popup-close" onclick="closeAuthPopup()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
                 </svg>
-                Sign in with Google
-            </a>
+            </button>
+            <div class="auth-popup-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                Sign in required
+            </div>
+            <div class="auth-popup-content">
+                Creating or voting in an election requires that your browser is signed into your Google account. You will be served a 403 error page if you're not signed in.
+                If your browser is signed in with your Google Account, click continue, otherwise sign in with google and return to this page.
+            </div>
+            <div class="auth-popup-buttons">
+                <button class="auth-continue-btn" onclick="continueToDestination()">Continue</button>
+                <a href="https://accounts.google.com/ServiceLogin" class="auth-signin-btn" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 18 18">
+                        <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+                        <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/>
+                        <path fill="#FBBC05" d="M3.964 10.71c-.18-.54-.282-1.117-.282-1.71s.102-1.17.282-1.71V4.958H.957C.347 6.173 0 7.548 0 9s.348 2.827.957 4.042l3.007-2.332z"/>
+                        <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/>
+                    </svg>
+                    Sign in with Google
+                </a>
+            </div>
         </div>
     </div>
-</div>
-
 
     <footer>
         <p>© 2024 Let My Vote Count. All rights reserved.</p>
     </footer>
 
     <script>
-function sendEmail() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-
-    // Replace with your desired email address
-    const developerEmail = 'jephtahdavids@gmail.com';
-
-    // Create mailto link
-    const mailtoLink = `mailto:${developerEmail}?subject=LetMyVoteCount Inquiry from ${name}&body=${encodeURIComponent(message)}%0A%0AFrom: ${name}%0AEmail: ${email}`;
-
-    // Open default email client
-    window.location.href = mailtoLink;
-
-    // Prevent form submission
-    return false;
-}
-</script>
-
-<script>
-    function toggleFormPopup(event) {
-        if (event) {
-            event.stopPropagation();
-        }
-        const popup = document.querySelector('.form-popup');
-        const overlay = document.querySelector('.form-popup-overlay');
-
-        if (overlay.style.display === 'none' || !overlay.style.display) {
-            overlay.style.display = 'flex';
-            popup.style.display = 'block';
-        } else {
-            overlay.style.display = 'none';
-            popup.style.display = 'none';
-        }
-    }
-
-    // Prevent popup from closing when clicking inside the form
-    document.querySelector('.form-popup').addEventListener('click', function(event) {
+function toggleFormPopup(event) {
+    if (event) {
         event.stopPropagation();
-    });
+    }
+    const popup = document.querySelector('.form-popup');
+    const overlay = document.querySelector('.form-popup-overlay');
+
+    if (overlay.style.display === 'none' || !overlay.style.display) {
+        overlay.style.display = 'flex';
+        popup.style.display = 'block';
+    } else {
+        overlay.style.display = 'none';
+        popup.style.display = 'none';
+    }
+}
+
+// Prevent popup from closing when clicking inside the form
+document.querySelector('.form-popup').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
 </script>
 
 <script>
