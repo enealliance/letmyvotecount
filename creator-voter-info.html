@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Instructions Template | Let My Vote Count</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .instructions {
+            margin-bottom: 2rem;
+        }
+
+        .instructions h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .instructions ol {
+            padding-left: 1.5rem;
+        }
+
+        .instructions li {
+            margin-bottom: 1rem;
+        }
+
+        .template {
+            background-color: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .template p {
+            margin-bottom: 1rem;
+        }
+
+        .template .highlight {
+            background-color: #fef3c7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .copy-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .note {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            header, .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Voter Instructions Template</h1>
+            <p>Share these instructions with your eligible voters to guide them through accessing and participating in your election</p>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <p>As an election creator, you can copy and customize the template below to provide clear instructions to your voters. This will help ensure everyone can easily access and participate in your election.</p>
+            </div>
+
+            <div class="instructions">
+                <h2>How to Use This Template</h2>
+                <ol>
+                    <li>Copy the template text below</li>
+                    <li>Replace the highlighted information with your specific election details</li>
+                    <li>Share the completed instructions with your eligible voters via email, messaging platforms, or your organization's communication channels</li>
+                </ol>
+            </div>
+
+            <div class="template" id="template-text">
+                <p>Dear Voter,</p>
+
+                <p>You are invited to participate in the <span class="highlight">[Your Organization Name]</span> election for <span class="highlight">[Election Purpose]</span>.</p>
+
+                <p>To cast your vote, please follow these steps:</p>
+
+                <p>1. Visit www.letmyvotecount.com</p>
+
+                <p>2. Click the 'Vote Now' button on the homepage</p>
+
+                <p>3. You will be asked to authenticate with your Gmail account through Google OAuth 2.0 to ensure vote integrity</p>
+
+                <p>4. Under "Vote in Existing Elections," search for our election using the name: <span class="highlight">[Your Election Name]</span></p>
+
+                <p>5. If our election is restricted, you can verify it using the unique ID: <span class="highlight">[Election ID]</span> (For non-anonymous elections, look for the creator's email and name instead of an ID)</p>
+
+                <p>6. Follow the on-screen instructions to cast your vote</p>
+
+                <p>This election will remain open until <span class="highlight">[End Date and Time]</span>.</p>
+
+                <p>If you have any questions or need assistance, please contact <span class="highlight">[Contact Person/Email]</span>.</p>
+
+                <p>Thank you for your participation!</p>
+
+                <p><span class="highlight">[Your Name/Organization]</span></p>
+            </div>
+
+            <button class="copy-btn" onclick="copyTemplate()">Copy Template</button>
+
+            <div class="note">
+                <p><strong>Note:</strong> If you've created an open election (where anyone with a Gmail account can vote), make sure to mention this in your instructions and omit references to voter registration requirements.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2024 Let My Vote Count. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyTemplate() {
+            const templateText = document.getElementById('template-text').innerText;
+            navigator.clipboard.writeText(templateText)
+                .then(() => {
+                    const copyBtn = document.querySelector('.copy-btn');
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy Template';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert('Failed to copy template. Please select the text and copy manually.');
+                });
+        }
+    </script>
+</body>
+</html>
