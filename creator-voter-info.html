@@ -119,6 +119,25 @@
             padding: 1rem;
             margin-top: 2rem;
             border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .note-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #fde68a;
+        }
+
+        .note-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .note-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #92400e;
         }
 
         footer {
@@ -128,6 +147,26 @@
             border-top: 1px solid #e5e7eb;
             font-size: 0.9rem;
             color: #6b7280;
+        }
+
+        .origins {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 4px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -193,7 +232,30 @@
             <button class="copy-btn" onclick="copyTemplate()">Copy Template</button>
 
             <div class="note">
-                <p><strong>Note:</strong> If you've created an open election (where anyone with a Gmail account can vote), make sure to mention this in your instructions and omit references to voter registration requirements.</p>
+                <div class="note-item">
+                    <div class="note-title">Open Elections</div>
+                    <p>If you've created an open election (where anyone with a Gmail account can vote), make sure to mention this in your instructions and omit references to voter registration requirements.</p>
+                </div>
+
+                <div class="note-item">
+                    <div class="note-title">Electoral Transparency</div>
+                    <p>To ensure maximum transparency, candidates or their representatives should ideally be present during election creation and results generation. This simulates real-world election protocols where stakeholders witness critical electoral processes.</p>
+                </div>
+
+                <div class="note-item">
+                    <div class="note-title">Election Preview Feature</div>
+                    <p>While all core functionality like organizing elections and generating final results are free, the "View" feature for previewing elections before closure is available with a one-time $6 lifetime license. This premium feature simulates real-world elections where interim results aren't typically available until polls close.</p>
+                </div>
+
+                <div class="note-item">
+                    <div class="note-title">Results Verification</div>
+                    <p>When election results are generated, a copy is automatically sent to support@skillsverification.co.uk. This enables independent verification in case of disputes about published results. Any interested party (voters, candidates, or observers) with concerns can contact this address directly for result confirmation. The platform's use of Google OAuth 2.0 ensures administrators cannot access user data or election results, maintaining electoral integrity and preventing any form of interference.</p>
+</div>
+                </div>
+            </div>
+
+            <div class="origins">
+                <p>Let My Vote Count was originally developed by <a href="https://skillsverification.co.uk" target="_blank">Skills Verification</a> to help educational institutions organize student elections. The platform has since been widely adopted by various organizations for their electoral needs.</p>
             </div>
         </div>
 
