@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetMyVoteCount - Preview License</title>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f3f4f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f3f4f6, #e0f7fa);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        h1 span {
+            font-size: 1.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .benefits {
+            text-align: left;
+            margin-bottom: 30px;
+            color: #4b5563;
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .benefits li {
+            margin: 12px 0;
+        }
+
+        .price-info {
+            margin-bottom: 20px;
+            color: var(--text-color);
+            font-size: 1.1rem;
+        }
+
+        .price-info span {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form input {
+            padding: 12px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        .form input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+
+        .form button {
+            padding: 14px 28px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-top: 20px;
+        }
+
+        .highlight {
+            font-size: 0.95rem;
+            color: var(--primary-color);
+            margin-top: 15px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LetMyVoteCount <span>Preview License</span></h1>
+        <p class="subtitle">Unlock real-time election monitoring capabilities</p>
+        <ul class="benefits">
+            <li>🔍 <strong>Real-Time Monitoring:</strong> Preview voting progress before election closure</li>
+            <li>🔄 <strong>Live Updates:</strong> Track participation in real-time as votes come in</li>
+            <li>📊 <strong>Instant Analytics:</strong> Access interim results and statistics during active elections</li>
+            <li>🔐 <strong>Lifetime License:</strong> One-time payment for permanent access to the preview feature</li>
+        </ul>
+        <p class="price-info">Pay <span>GHS 92</span> (~ $7 | £5 | €6 | ₹500 | ₦3000)/LIFETIME</p>
+        <p class="highlight">This is a one-time payment for lifetime access to the preview functionality. Your core election platform features remain completely free.</p>
+        <form id="paymentForm" class="form">
+            <input type="email" id="email-address" required placeholder="Enter your email address" />
+            <button type="submit" onclick="payWithPaystack(event)">Activate Preview License</button>
+        </form>
+        <p class="note">💡 Enter the same email address used for creating elections to automatically enable preview functionality for your account.</p>
+    </div>
+
+    <script>
+        const payWithPaystack = (e) => {
+            e.preventDefault();
+            const handler = PaystackPop.setup({
+                key: 'pk_test_e834db0f10c8f3006d1cce57e2d02342d770cb74', // Your Paystack public key
+                email: document.getElementById('email-address').value,
+                amount: 9200, // Amount in pesewas (92 GHS * 100)
+                currency: 'GHS',
+                callback: function(response) {
+                    fetch('https://script.google.com/macros/s/AKfycbwlPbp2bgiEKfJKc2yjrJlesMeCBfTIAzULGH7Lzmp46lCxHJqbzFrC9NRPRAgvMzTbcQ/exec', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            reference: response.reference,
+                            email: document.getElementById('email-address').value
+                        })
+                    });
+
+                    // Show success message
+                    document.querySelector('.container').innerHTML = `
+                        <h1>Payment Successful!</h1>
+                        <p class="subtitle">Your preview license has been activated</p>
+                        <p style="margin: 30px 0; color: #4b5563;">You now have lifetime access to the preview functionality for all your elections. This feature allows you to monitor voting progress in real-time before the election closes.</p>
+                        <a href="https://www.letmyvotecount.com/createandvote" style="display: inline-block; padding: 14px 28px; background-color: var(--primary-color); color: white; font-size: 1.1rem; font-weight: 600; border-radius: 8px; text-decoration: none; transition: all 0.3s ease;">Return to Elections</a>
+                    `;
+                },
+                onClose: function() {
+                    // Handle when user closes payment modal
+                }
+            });
+            handler.openIframe();
+        }
+    </script>
+</body>
+</html>
