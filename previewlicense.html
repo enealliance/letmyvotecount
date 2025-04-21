@@ -162,12 +162,12 @@
         const payWithPaystack = (e) => {
             e.preventDefault();
             const handler = PaystackPop.setup({
-                key: 'pk_test_e834db0f10c8f3006d1cce57e2d02342d770cb74', // Your Paystack public key
+                key: 'pk_live_1ce2a70c7780ac3b85675a9400b549e7b90198c7', // Your Paystack public key
                 email: document.getElementById('email-address').value,
                 amount: 9200, // Amount in pesewas (92 GHS * 100)
                 currency: 'GHS',
                 callback: function(response) {
-                    fetch('https://script.google.com/macros/s/AKfycbwlPbp2bgiEKfJKc2yjrJlesMeCBfTIAzULGH7Lzmp46lCxHJqbzFrC9NRPRAgvMzTbcQ/exec', {
+                    fetch('https://script.google.com/macros/s/AKfycbx52RJCLZe3wCSI3CZsz-5Z5e6oLhpHNBwmVsuQIJzsHqKc4ToQuPayFxOpYHDgu3oD/exec', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
